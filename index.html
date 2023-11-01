@@ -1,103 +1,129 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Tipster</title>
+  <meta name="author" content="-greyish-">
+  <meta name="description" content="Pooled tips calculator and distributor">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta charset="utf-8">
+  <!-- Styles -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Patua+One|Open+Sans">
+  <link href="style.css" rel="stylesheet" type="text/css">
+  <!-- Website icons -->
+  <link rel="icon" href="https://cdn.glitch.com/bcce6c5b-a2f8-444b-b869-ed9526f3cb0b%2Ffavicon.ico?v=1602705157330">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://cdn.glitch.com/bcce6c5b-a2f8-444b-b869-ed9526f3cb0b%2Fapple-touch-icon.png?v=1602705115651">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://cdn.glitch.com/bcce6c5b-a2f8-444b-b869-ed9526f3cb0b%2Ffavicon-32x32.png?v=1602705107542">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://cdn.glitch.com/bcce6c5b-a2f8-444b-b869-ed9526f3cb0b%2Ffavicon-16x16.png?v=1602705100336">
+  <!-- Scripts -->
+  <script>
+    // Ensure we always go to https
+    if (location.protocol != 'https:') {
+      location.href = 'https:' + window.location.href.substring(window.location.protocol.length);
+    }
+  </script>
+  <script defer src="script.js"></script>
+</head>
+
 <body>
-  <nav class="main-menu">
-    <ul>
-      <li>
-        <a href="#">
-          <i class="fa fa-home nav-icon"></i>
-          <span class="nav-text">Home</span>
-        </a>
-      </li>
+  <!-- Tipster title bar -->
+  <table id="justCaption">
+    <caption class="unselectable">Tips Distributor</caption>
+    <div id="help" class="unselectable animate__animated animate__fadeInDown animate__delay-1s">
+      ?
+    </div>
+  </table>
 
-      <li>
-        <a href="#">
-          <i class="fa fa-image nav-icon"></i>
-          <span class="nav-text">Gallery</span>
-        </a>
-      </li>
-
-      <li>
-        <a href="#">
-          <i class="fa fa-pen nav-icon"></i>
-          <span class="nav-text">Blog</span>
-        </a>
-      </li>
-
-      <li>
-        <a href="#">
-          <i class="fa fa-envelope nav-icon"></i>
-          <span class="nav-text">Messages</span>
-        </a>
-      </li>
-
-      <li>
-        <a href="#">
-          <i class="fa fa-bell nav-icon"></i>
-          <span class="nav-text">Notification</span>
-        </a>
-      </li>
-
-    </ul>
-
-    <ul class="logout">
-      <li>
-        <a href="#">
-          <i class="fa fa-cogs nav-icon"></i>
-          <span class="nav-text">Settings</span>
-        </a>
-      </li>
-
-      <li>
-        <a href="#">
-          <i class="fa fa-right-from-bracket nav-icon"></i>
-          <span class="nav-text">
-            Logout
-          </span>
-        </a>
-      </li>  
-    </ul>
- </nav>
-  
- 
-<div class="container">
-<div class="blob-c">
-  <div class="blob"></div>
-  <div class="blob one"></div>
-  <div class="blob two"></div>
-  <div class="blob three"></div>
-  <div class="blob four"></div>
-  <div class="blob five"></div>
-  <div class="blob six"></div>
-  <div class="blob seven"></div>
-</div>
-
-<section>
-  <div class="card">
-    <img src="https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/ef19280b-4fd3-4fdd-9798-1ec22d8ab4b8" alt="image" />
-
-    <div class="card-content">
-      <p>Blue Sky</p>
-      <p>When we use the term ‘blue sky’ to describe higher thinking, we are relating it to this endless color above us.</p>
+  <!-- A div to contain & position our dimmer filter when Info Screen is toggled -->
+  <div style="position: absolute; left: 50%;">
+    <div id="dimmer" style="position: relative; left: -50%;" hidden>
     </div>
   </div>
 
-  <div class="card">
-    <img src="https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/cd21ab5f-c7c2-4d9a-a0e7-ad17a88df444" alt="image" />
+  <!-- A div to contain & position some of our informational speech bubbles -->
+  <div style="position: absolute; left: 50%;">
+    <div style="position: relative; left: -50%; width: 190px; overflow: visible"></div>
 
-    <div class="card-content">
-      <p>Blue in Foods</p>
-      <p>The color blue is rarely found in foods because it lacks a chemical compound that makes them blue.</p>
+    <div id="speechBubble_3" class="speech-bubble unselectable" hidden>
+      <div id="sB3_arrow" class="arrow-top"></div>
+      Click me to <br>
+      add people!
     </div>
+
+    <div id="speechBubble_4" class="speech-bubble unselectable" hidden>
+      <a href="info.html" target="_blank">more info</a>
+    </div>
+
+    <div id="speechBubble_5" class="speech-bubble unselectable" hidden>
+      <div id="sB5_arrow" class="arrow-right"></div>
+      Add rows
+    </div>
+
   </div>
 
-  <div class="card">
-    <img src="https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/1beae2b7-eea5-4f05-8bb8-cd7a6a85d3e2" alt="image" />
+  <!-- Main body of Tipster where Hours and Tips go -->
+  <table id="mainTable">
+    <tr>
+      <td id="icon">
+        <img src="https://cdn.glitch.com/bcce6c5b-a2f8-444b-b869-ed9526f3cb0b%2Fmini-person-tiny-plus.png?v=1601773534092" style="display:block;margin:auto;" class="animate__animated animate__flash animate__delay-3s">
+      </td>
+      <th class="colHeader unselectable">
 
-    <div class="card-content">
-      <p>Blue is Calming</p>
-      <p>Blue is the color of relaxation. It has really never been unpopular but more recently, it is more trendy in home decor and fashion.</p>
-    </div>
-  </div>
-</section>
-</div>
+        <div id="speechBubble_1" class="speech-bubble unselectable" hidden>
+          <div id="sB1_arrow" class="arrow-bottom"></div>
+          In this column, enter each <br>
+          person's hours worked.
+        </div>
+
+        Hours
+      </th>
+      <th class="colHeader unselectable"> Tips </th>
+    </tr>
+  </table>
+
+  <!-- Single shaded row showing totals of Hours and Tips, adjacent to bottom of main body of Tipster -->
+  <table id="totalsTable">
+    <tr>
+      <th class="unselectable">
+        =
+      </th>
+      <td class="unselectable" id="totalHours"></td>
+      <td class="unselectable" id="totalTips"></td>
+    </tr>
+  </table>
+
+  <!-- Separate input box for "Total tips this week" floating below main body of Tipster -->
+  <table id="totalTipsInputTable">
+    <tr>
+      <th class="unselectable">
+
+        <div id="speechBubble_2" class="speech-bubble unselectable" hidden>
+          <div id="sB2_arrow" class="arrow-bottom"></div>
+          In this box, enter the amount of<br>
+          total tips you wish to distribute.
+        </div>
+
+        Total tips this week:
+      </th>
+    </tr>
+    <tr>
+      <td>
+        <input id="inputTips" placeholder="Enter total count here">
+      </td>
+    </tr>
+  </table>
+
+  <!-- Separate box showing this week's "Hourly tip rate"; appears below everything if there's a number to show -->
+  <table id="tipRateTable" hidden>
+    <tr>
+      <th class="unselectable">Hourly tip rate:</th>
+    </tr>
+    <tr>
+      <td class="unselectable" id="hourlyRate"></td>
+    </tr>
+  </table>
 
 </body>
+
+</html>
